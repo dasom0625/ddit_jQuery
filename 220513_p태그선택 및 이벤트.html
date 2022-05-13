@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+// $('p').css('background','lime');	//p태그가 아직 생성되어있지 않아서 이렇게 먼저 사용 할 수 없다.
+
+// <!---------------------방법 1------------------------------->
+// window.onload = function(){
+// 	$('p').css('background','lime');
+// }
+
+// <!---------------------방법 2------------------------------->
+// $(document).ready(function(){
+// 	$('p').css('background','lime');
+// })
+
+<!---------------------방법 3------------------------------->
+$(function(){
+	//모든 p태그를 선택하는 방법
+	$('p').css('background','lime');
+	
+	//1번째 form안의 p태그 선택하는 방법
+	$('p',document.forms[1]).css('font-size','1.5em');
+	
+	//이벤트가 발생되는 요소(this) 내에서 p태그를 선탁하기
+	$('div').on('click',function(){
+		//방법1		
+// 		$('p',this).css('color','red');
+// 		$('p',this).css('font-weight','bold');
+// 		$('p',this).css('font-size','3.0em');
+		
+		//방법2
+// 		$('p',this).css('color','red').css('font-weight','bold').css('font-size','3.0em');
+		
+		//방법3
+		$('p',this).css({'font-size':'3.0em','color':'red','font-weight':'bold'});
+		
+	})
+	
+})
+</script>
+
+</head>
+<body>
+
+
+
+<pre>
+
+</pre>
+<br><br>
+<div id = "d1">
+	<p>무궁화 꽃이 피었습니다.</p>
+</div>
+
+<p>조별과제</p>
+
+<form>
+	<p>발표는 내가...</p>
+</form>	
+
+<form>
+	<p>오마이갓..</p>
+</form>	
+
+	
+<div>
+	<p>점심</p>
+</div>	
+	
+</body>
+</html>
