@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+function proc1(vh2){
+// 	vh2는 클릭한 h2의 this이다(Dom변수)
+
+//----클릭하면 글씨가 빨간색으로 변하게 하기.
+// 	vh2.style.color = 'red'; //첫번째 방법
+
+// 	vh2.css('color','red'); =>실행하며 type오류가 뜬다. 이걸 쓸거면 객체를  아래와 같이 jQuery 객체로 변형해줘야 사용가능하다.
+	jQuery(vh2).css('color','red');//두번째 방법 jQuery로 감싸기
+// 	$(vh2).css('color','red');//세번째 방법
+
+
+//----클릭하면 글씨가 사라지게 하기 
+// 	vh2.style.display = "none"; //첫번째 방법 
+	jQuery(vh2).hide();	//두번째 방법
+// 	$(vh2).hide(); //세번째 방법
+	
+	
+	
+}
+
+
+<!------------------------- jQuery함수 첫번쨰 방법 --------------------------------->
+window.onload = function(){
+	$('#d2 h2').on('click',function(){
+		
+		//클릭하면 색상을 파란색으로 바뀌게 하기
+// 		$(this).css('color','blue');
+
+		//클릭하면 안보이게 하기
+		$(this).hide();
+		
+	})
+}
+
+<!------------------------- jQuery함수 두번쨰 방법 --------------------------------->
+$(document).ready(function(){
+	$('#d2 h2').on('click',function(){
+		
+	})
+})
+
+
+<!------------------------- jQuery함수 세번쨰 방법 --------------------------------->
+$(function(){ //window.onload와 같다.
+	$('#d2 h2').on('click',function(){
+		
+	})
+})
+
+
+
+</script>
+<style>
+span{
+color : red;
+}
+</style>
+
+
+</head>
+<body>
+
+
+<pre>
+1. 스크립트 사용시 =>여기서 this는 Dom변수이다.
+	&lt;h2 <span> onclick = "proc1(this)"</span>>클릭하면 사라집니다1.&lt;/h2>
+</pre>
+<br><br>
+<div id = "d1">
+
+	<h2 onclick = "proc1(this)">클릭하면 사라집니다1.</h2>
+	<h2 onclick = "proc1(this)">클릭하면 사라집니다2.</h2>
+	<h2 onclick = "proc1(this)">클릭하면 사라집니다3.</h2>
+	<h2 onclick = "proc1(this)">클릭하면 사라집니다4.</h2>
+	<h2 onclick = "proc1(this)">클릭하면 사라집니다5.</h2>
+	<h2 onclick = "proc1(this)">클릭하면 사라집니다6.</h2>
+	<h2 onclick = "proc1(this)">클릭하면 사라집니다7.</h2>
+
+</div>
+
+<pre>
+2. 
+$('h2').on('click',function(){}); => 10개 모두 선택한다.
+</pre>
+<br><br>
+<div id = "d2">
+
+	<h2>클릭하면 사라집니다1.</h2>
+	<h2>클릭하면 사라집니다2.</h2>
+	<h2>클릭하면 사라집니다3.</h2>
+	<h2>클릭하면 사라집니다4.</h2>
+	<h2>클릭하면 사라집니다5.</h2>
+	<h2>클릭하면 사라집니다6.</h2>
+	<h2>클릭하면 사라집니다7.</h2>
+
+</div>
+
+</body>
+</html>
