@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+// function proc1(){}
+
+//3.클릭하면 이미지가 랜덤으로 바뀌도록 배열만들기
+arr=["디퓨저1.jpg","디퓨저2.jpg","디퓨저3.jpg","케이크1.jpg","케이크2.jpg","케이크3.jpg","안다르1.jpg","안다르2.jpg","안다르3.jpg"]
+
+$(document).ready(function(){
+	$('#imgjq').on('click',function(){
+		
+		//4.배열길이만큼 랜덤 발생시키기 
+		ran = parseInt(Math.random()*arr.length);
+		
+		//1. 이미지 생성하고, 클릭시 테두리 나오게 하기
+// 		$('<img src = "../HWimages/디퓨저1.jpg" alt = "디퓨저1.jpg" onclick="imgClick()">')//자바스크립트 방식
+		
+		$('<img>',{//jQuery방식
+			'src' : '../HWimages/' + arr[ran],
+			'alt' : arr[ran],
+			'width' : '200px',
+			'height' : 'auto',
+			'click' : function(){//생성된 이미지를 클릭하면 this로 받아서 이미지에 테두리 주기
+				$(this).css('border','5px solid red');
+				
+			}
+		//2. appendTo로 어디에 작업한 내용을 보여줄건지 작성ㄴ해주기
+		}).appendTo($('#d1'));
+	})
+})
+
+</script>
+
+<style>
+img{
+	margin : 5px;
+}
+</style>
+</head>
+<body>
+
+
+
+<pre></pre>
+<!-- <input type="button" value="이미지 생성proc1()"  onclick = "proc1()">  : 자바스크립트 방식--> 
+<input id = "imgjq" type="button" value="이미지 생성$">
+<br><br>
+<div id = "d1"></div>
+</body>
+</html>
