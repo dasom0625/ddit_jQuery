@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+<style>
+p{font-size ; 2.0em;}
+</style>
+
+<script>
+
+$(function(){
+// 	$('input#btn1')
+// 	$('#btn1')
+// 	$('input[type-button]')
+// 	$('input[value=확인]')
+// 	$('input[id=btn1]')
+	
+	$('input#btn1').on('click',function(){
+	
+	//title 속성을 가진 p요소의 배경색 변경
+	$('p[title]').css('background','yellow');
+	//type 속성이 password 인 요소의 테두리 변경
+	$('input[type=password]').css('border','5px solid green');
+	
+	})
+	
+	$('input#btn2').on('click',function(){
+		//type이 button인 input요소의 배경색 변경 
+		$('#d2 input[type=button]').css('background','pink');
+		//href가 mailto 로 시작하는 a 요소의 배경색 변경  
+		$('a[href^=mailto]').css('background','yellow');  
+		//id 가 img1인것만 제외한(아닌) img요소의 테두리 변경 
+		$('img[id!=img1]').css('border','5px solid green');
+		  //src가 png로 끝나는 img 요소의 테두리 변경 
+		$('img[src$=png').css('border','5px double blue');
+		//type이 text인 input 요소의 테두리 
+		$('#d2 input[type=text]').css('border','5px dotted green');
+		//title 이 named 단어(공백구분)를 포함한 img 요소 의 테두리  
+		$('img[title~=named]').css('border','5px double red');
+		//href가 power2c를 포함하는 모든 a 요소  의 밑줄 없음  
+		$('a[href*=power2c]').css('text-decoration','none');
+		//id가 little 이거나 little- 로 시작하는  img요소 의 테두리  
+		$('img[id|=title]').css('border','5px double black');
+		//alt 속성을 갖는 이미지 요소 의 테두리- 2px 단선  보라
+		$('img[alt]').css('border','2px solid purple');
+		 
+	})
+	
+})
+
+</script>
+<style>
+img{
+width: 200px;
+height: auto;
+}
+</style>
+</head>
+<body>
+
+<pre></pre>
+<input type="button" value="확인" id = "btn1">
+<br><br>
+<div id = "d1">
+	<p> 일반 문단입니다 </p>
+	<p title="툴팁으로 보입니다"> 타이틀을 가지고 있는 문단입니다 </p>
+<!-- 	타이틀을 가지고 있는 문단입니다 라는 문구위에 마우스를 올리면 '툴팁으로 보입니다'가 뜬다. -->
+	회원번호<input type="text">  
+	비밀번호<input type="password">  
+</div>
+
+
+<input type="button" value="확인" id = "btn2">
+<br><br>
+<div id = "d2">
+	<a href="http://www.ddit.or.kr">(재)대덕 인재 개발원</a><br><br>
+	<a href="mailto:power2c@ddit.or.kr">빠워에게 메일보내기</a><br><br>
+	<div><label>Some images:</label></div>
+	<div>
+		  <img src="../HWimages/아디다스1.jpg" id=“img1" alt="Hibiscus">
+		  <img src="../HWimages/옷1.jpg" id="little-Bear" title="A dog named little Bear">
+		  <img src="../HWimages/밥.png" id="verbena" alt="Verbena">
+		  <img src="../HWimages/안다르3.jpg" id="cozmo" title="A puppy named Cozmo">
+		  <img src="../HWimages/디퓨저1.jpg" id="tigerLily" alt="Tiger Lily">
+		  <img src="../HWimages/디퓨저2.jpg" id="little" title="coffeePot">
+		  <img src="../HWimages/디퓨져3.jpg">
+	</div>
+	<div id="someDiv">이곳은 ID속성이 <tt>someDiv</tt>인 &lt;div&gt;태그 입니다. </div>
+	<form>
+	  <div>
+	    <label>Text:</label> <input type="text" id="aTextField" name="someTextField"/>
+	  </div>
+	   <button type="submit" id="submitButton">Submit</button><input type="button" value="클릭~~">
+	</form>
+
+</div>
+
+
+
+</body>
+</html>
