@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+	$(function(){
+		$('#btn1').on('click',function(){
+			
+			$('td:first-child').css('background','skyblue');
+// 			$('td:first-child').css('background','gray');
+			$('td:nth-child(2)').css('background','yellow');
+			$('td:last-child').css('background','orange')
+// 			$('th').css('background','pink').css('color','white'); 이렇게 주거나 혹은 아래와 같이...
+			$('tr:first').css('background','pink').css('color','white');
+		})
+	})
+</script>
+
+
+<style>
+table{
+	border : none;
+	text-align: center;
+}
+
+td{
+	width: 100px;
+	height: 50px;
+}
+
+th{
+	height: 70px;
+	font-size : 2.0em;
+}
+</style>
+
+</head>
+<body>
+
+<pre>
+:nth-child(index) =>index 번째 자식
+:first-child =>첫번째 자식
+:last-child =>마지막 자식
+:only-child =>독자
+</pre>
+<input type="button" value="확인" id="btn1">
+<br><br>
+<div id = "d1">
+<table id='tab1' border = '1'>
+	<thead>	<!-- thead와 tbody를 분리 -->
+		<tr>
+			<th>번호</th>
+			<th>금액</th>
+			<th>비고</th>
+		</tr>
+	</thead>	
+		<tr>
+			<td>ONE</td>
+			<td>62만원</td>
+			<td>와우</td>
+		</tr>
+		<tr>
+			<td>TWO</td>
+			<td>45만원</td>
+			<td>쉬는시간</td>
+		</tr>
+		<tr>
+			<td>THREE</td>
+			<td>33만원</td>
+			<td>이제곧</td>
+		</tr>
+		<tr>
+			<td>FOUR</td>
+			<td>72만원</td>
+			<td>점심시간</td>
+		</tr>
+		<tr>
+			<td>FIVE</td>
+			<td>77만원</td>
+			<td>한솥도시락</td>
+		</tr>
+		
+	</table>
+
+</div>
+</body>
+</html>
