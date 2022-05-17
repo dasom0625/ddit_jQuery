@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+	
+	$('#btn1').on('click',function(){
+
+		$('li:first,li:last').css('background','yellow');
+		$('li:eq(5)').css('background','red');
+		$('li:lt(4)').css({'font-size':'2.0em','font-weight':'bold'});
+		
+		
+	})
+	
+	$('#btn2').on('click',function(){
+		
+		$('#d2 #tab1 tr:even').css({'background':'black','color':'white'});
+		$('#d2 #tab1 tr:odd').css({'background':'hotpink','color':'white'});
+		
+		$('#d2 #tab1 tr:first').css({'background':'yellow','color':'orange'});
+	})
+})
+
+
+
+</script>
+<style>
+table{
+	border : none;
+	text-align: center;
+}
+
+td{
+	width: 100px;
+	height: 50px;
+}
+
+th{
+	height: 70px;
+	font-size : 2.0em;
+}
+</style>
+</head>
+<body>
+
+
+
+<pre>
+:first
+:last
+:eq(index)
+:lt(index)
+</pre>
+<input type="button" value="확인" id="btn1">
+<br><br>
+<div id = "d1">
+	<ul>
+		<li> one </li>
+		<li> two </li>
+		<li> three </li>
+		<li> four </li>
+		<li> five </li>
+		<li> six</li>
+		<li> seven</li>
+		<li>eight</li>
+		<li>nine</li>
+	</ul>
+
+</div>
+
+
+<pre>
+:even(0부터의 짝수)
+:odd(1부터의 홀수)
+</pre>
+<input type="button" value="확인" id="btn2">
+<br><br>
+<div id = "d2">
+	<table id='tab1' border = '1'>
+	<thead>	<!-- thead와 tbody를 분리 -->
+		<tr>
+			<th>번호</th>
+			<th>금액</th>
+		</tr>
+	</thead>	
+		<tr>
+			<td>ONE</td>
+			<td>62만원</td>
+		</tr>
+		<tr>
+			<td>TWO</td>
+			<td>45만원</td>
+		</tr>
+		<tr>
+			<td>THREE</td>
+			<td>33만원</td>
+		</tr>
+		<tr>
+			<td>FOUR</td>
+			<td>72만원</td>
+		</tr>
+		<tr>
+			<td>FIVE</td>
+			<td>77만원</td>
+		</tr>
+		<tr>
+			<td>SIX</td>
+			<td>54만원</td>
+		</tr>
+		<tr>
+			<td>SEVEN</td>
+			<td>61만원</td>
+		</tr>
+		<tr>
+			<td>EIGHT</td>
+			<td>52만원</td>
+		</tr>
+		<tr>
+			<td>NINE</td>
+			<td>88만원</td>
+		</tr>
+		<tr>
+			<td>TEN</td>
+			<td>100만원</td>
+		</tr>
+		
+	</table>
+
+</div>
+</body>
+</html>
