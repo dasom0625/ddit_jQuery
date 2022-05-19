@@ -1,0 +1,114 @@
+<!--
+1. mouseover와 addClass
+2. mouseout와 removeClass
+1. click과 addClass
+2. click과 removeClass
+3. click과 toggleClas
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+	$('img').on('mouseover',function(){	//'mouseover'는 마우스 포인터를 올려놓는것.
+		$(this).addClass('iborder');	//addClass('style에 있는 클래스이름') => 동적인 스타일을 줌
+	})
+	
+	$('img').on('mouseout',function(){	//'mouseout'은 마우스 포인터를 내려놓는것.
+		$(this).removeClass('iborder');	//removeClass('style에 있는 클래스이름') => 동적인 스타일을 제거
+	})
+	
+// 	$('p').on('click',function(){	//'click'는 마우스로 클릭하는 것 
+// 		$(this).addClass('ibackground');	//addClass('style에 있는 클래스이름') => 동적인 스타일을 줌
+// 	})
+// 	$('p').on('dblclick',function(){	//'dblclick'은 마우스로 더블클릭하는것
+// 		$(this).removeClass('ibackground');	//addClass('style에 있는 클래스이름') => 동적인 스타일을 줌
+// 	})
+	$('#d2 p').on('click',function(){	//
+		$(this).toggleClass('ibackground');	//toggleClass라는 동작으로 add와 remove를 한번에 수행
+	})
+	
+//////////////////////////////////////////////////////////////////////////////////////////	
+	
+	$('#d3 p').on('click',function(){	//
+		if($(this).hasClass('.ifontSize')){	//has클래스에서 ifontSize를 가지고있으면?
+			$(this).removeClass('ifontSize');
+		}else{	//has클래스에서 ifontSize를 가지고있지 않으면?
+			$(this).addClass('ifontSize');
+		}//toggle과 같다...
+	})
+	
+	
+	
+})
+</script>
+<style>
+img{
+width: 100px;
+height: 100px;
+}
+
+.iborder{	/*동적인 스타일 =>스크립트에서 사용할것*/
+border: 5px double lime;
+}
+
+.ibackground{
+background: skyblue;
+}
+
+.ifontSize{
+font-size : 2.0em;
+color : pink;
+}
+</style>
+</head>
+<body>
+
+
+<pre>
+1. mouseover와 addClass
+2. mouseout와 removeClass
+</pre>
+<input type="button" value="확인" onclick = "proc1()">
+<br><br>
+<div id = "d1">
+	<img src= "../HWimages/케이크1.jpg" alt = "안다르">
+	<img src= "../HWimages/케이크2.jpg" alt = "안다르">
+	<img src= "../HWimages/케이크3.jpg" alt = "안다르">
+	<img src= "../HWimages/안다르1.jpg" alt = "안다르">
+</div>
+
+<pre>
+1. click과 addClass
+2. click과 removeClass
+3. click과 toggleClass
+</pre>
+<input type="button" value="확인" onclick = "proc1()">
+<br><br>
+<div id = "d2">
+	<p>사랑해</p>
+	<p>행복해</p>
+	<p>즐거워</p>
+	<p>사실은 지겨워</p>
+</div>
+
+<pre>
+
+</pre>
+<input type="button" value="확인" onclick = "proc1()">
+<br><br>
+<div id = "d3">
+	<p>사랑해</p>
+	<p>행복해</p>
+	<p>즐거워</p>
+	<p>사실은 지겨워</p>
+</div>
+</body>
+</html>
