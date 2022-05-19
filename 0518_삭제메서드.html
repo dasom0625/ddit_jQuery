@@ -1,0 +1,69 @@
+<!--
+empty()와 remove()를 통한 삭제 메서드
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+	
+// 	$('input[value=empty]').on('click',function(){
+
+	$('input:button').on('click',function(){
+		
+		but = $(this).attr('value');
+		if(but =="empty"){ 
+			$('#d1').empty(); //안의 내용만 사라짐
+		}else if (but =="remove"){
+			$('#d1').remove(); //내용과 테두리까지 사라짐
+			
+		}else if (typeof but == "undefined"){
+			alert("value값을 찾을 수 없습니다.")
+		}
+		
+	})
+	
+// 	$('input[value=remove]').on('click',function(){
+// 	})
+})
+
+</script>
+
+<style>
+#d1{
+background: yellow;
+
+}
+p{
+background: lime;
+}
+</style>
+</head>
+<body>
+
+
+
+<pre>
+empty : 자식 요소들만 삭제
+remove : 선택 대상을 포함해서 자식 요소 삭제
+</pre>
+<input type="button" value="empty">
+<input type="button" value="remove">
+<input type="button" value="확인">
+<br><br>
+<div id = "d1">
+	<p>과제 너무 많아요</p>
+	<p>다음주 시험인데...</p>
+	<p>합격하고 싶어요...</p>
+	
+
+</div>
+</body>
+</html>
