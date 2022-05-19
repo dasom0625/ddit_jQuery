@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+	$('#d1 p').on('click',function(){
+		//여기서 this는 #d1 p이다.
+		if($(this).parent().is('.dd')){	//A.is(B)=>A가 B이냐(if문과 같다.)
+			$(this).clone(true).appendTo($(this).parent()).css('color','red');	//복사한거에 event가있으면 cloneTo로 해야한다.//내가 클릭한것의 부모 
+		}
+	})
+})
+</script>
+
+<style>
+p{
+border : 1px solid orange;	/*고정된 속성값=>정적인 방법*/
+}
+.dd{
+background: lime;	/*고정된 정적인 방법*/
+}
+</style>
+</head>
+<body>
+
+
+
+<pre></pre>
+<br><br>
+<div id = "d1">
+	<div class ="dd">
+			<p>점심시간</p>
+	</div>
+	
+		<p>배고파</p>
+		
+	<div class = "dd">
+		<p>뭐먹지</p>
+	</div>	
+
+</div>
+</body>
+</html>
