@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+	$('.pp').on('click',function(){
+		$(this).css('font-size', '+=5px');
+	})
+	
+	$('#clo').on('click',function(){
+		
+		$('#p1').clone().appendTo('#d1');//잘라서 이동하기(이벤트 유지)
+// 		$('#p1').appendTo($('#d1'));//잘라서 이동하기(이벤트 유지)
+	})
+	$('#clot').on('click',function(){
+		vp2 = $('#p2').clone(true);
+		$('#d1').append(vp2);
+		
+	})
+	
+})
+</script>
+
+</head>
+<body>
+
+
+
+<pre></pre>
+
+<p id = p1 class = pp>과제 너무 많아요</p>
+<p id = p2 class = pp>시험도 너무 많아요</p>
+
+<input type="button" value="clone" id = clo>
+<input type="button" value="clonetrue" id = clot>
+<br><br>
+<div id = "d1"></div>
+</body>
+</html>
