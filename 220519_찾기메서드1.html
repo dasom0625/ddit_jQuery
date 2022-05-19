@@ -1,0 +1,214 @@
+<!-- next
+nextAll
+nextUntil
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+
+<script>
+$(function(){
+	
+	$('#next').on('click',function(){
+		$('#d1 li.start').next().css({"border":"2px solid red","color":"red"});
+	})
+
+<!-------------------------------------------------------------------------------->	
+	
+	$('#all').on('click',function(){
+		
+		$('#d1 li.start').nextAll().css({"border":"2px solid blue","color":"blue"});
+	})
+	
+<!-------------------------------------------------------------------------------->	
+	
+	$('#until').on('click',function(){
+		
+		$('#d1 li.start').nextUntil($('#d1 li:last')).css({"border":"2px solid green","color":"green"});
+	})
+
+///////////////////////////////////////////////////////////////////////////////////////
+	
+	$('#prev').on('click',function(){
+		
+		$('#d1 li.start').prev().css("background","pink");
+	})
+	
+<!-------------------------------------------------------------------------------->	
+	
+	$('#prevAll').on('click',function(){
+		
+		$('#d1 li.start').prevAll().css("background","lime");
+	})
+	
+<!-------------------------------------------------------------------------------->	
+
+	$('#prevUntil').on('click',function(){
+		
+		$('#d1 li.start').prevUntil($('#d1 li:first')).css('background','orange');
+	})
+	
+////////////////////////////////////////////////////////////////////////////////////////	
+	
+	$('#parent').on('click',function(){
+		$('#d2 span').parent().css({"border":"2px solid red","color":"red"});
+	})
+
+<!-------------------------------------------------------------------------------->	
+	
+	$('#parents').on('click',function(){
+		
+		$('#d2 span').parents().css({"border":"2px solid blue","color":"blue"});
+	})
+	
+<!-------------------------------------------------------------------------------->	
+	
+	$('#parentss').on('click',function(){
+		
+		$('#d2 span').parents('#d2').css({"border":"2px solid green","color":"green"});
+	})
+	
+<!-------------------------------------------------------------------------------->	
+	
+	$('#parentsUntil').on('click',function(){
+		
+		$('#d2 span').parentsUntil('#d2').css({"border":"2px solid hotpink","color":"hotpink"});
+	})
+////////////////////////////////////////////////////////////////////////////////////
+	$('#find1').on('click',function(){
+		
+		$(this).parent().find('span').css("background","yellow");
+	})//this로 find가 있는 d3의 버튼을 가져옴.
+
+<!-------------------------------------------------------------------------------->	
+	$('#find2').on('click',function(){
+		
+		$(this).parent().find('span').css("background","lime");
+	})
+	
+	
+})
+</script>
+
+<style>
+.siblings * { 
+  display: block;
+  border: 2px solid lightgrey;
+  color: lightgrey;
+  padding: 5px;
+  margin: 15px;
+}
+</style>
+</head>
+<body>
+
+
+<!-------------------------------------------------------------------------------->	
+
+<pre>
+1. next()  
+2. nextAll() 
+3. nextUntil
+
+1. prev()
+2. prevAll()
+3. prevUntil()
+
+</pre>
+<!-------------------------------------------------------------------------------->	
+<input type="button" value="next" id = "next">
+<input type="button" value="nextAll" id = 'nextAll'>
+<input type="button" value="nextUntil" id = 'nextUntil'>
+
+<!-------------------------------------------------------------------------------->	
+<input type="button" value="prev" id = 'prev'>
+<input type="button" value="prevAll" id = 'prevAll'>
+<input type="button" value="prevUntil" id = 'prevUntil'>
+<br><br>
+<div id = "d1">
+	<div style="width:500px;" class="siblings">
+	  <ul>ul (parent)  
+	    <li>li (the prev sibling of li with class name "start")</li>	<!--class start의 prev  -->
+	    <li>li (the prev sibling of li with class name "start")</li>	<!--class start의 prev  -->
+	    <li>li (the prev sibling of li with class name "start")</li>	<!--class start의 prev  -->
+	    <li>li (the prev sibling of li with class name "start")</li>	<!--class start의 prev  -->
+	    <li class="start">li (sibling with class name "start")</li>
+	    <li>li (the next sibling of li with class name "start")</li>
+	    <li>li (the next sibling of li with class name "start")</li>
+	    <li>li (the next sibling of li with class name "start")</li>
+	    <li>li (the next sibling of li with class name "start")</li>
+	  </ul>   
+	</div>
+
+</div>
+
+<!-------------------------------------------------------------------------------->	
+
+<pre>
+1. parent()
+2. parents()
+3. parents(selector)
+4. parentsUntil()
+
+</pre>
+<input type="button" value="parent" id = "parent">
+<input type="button" value="parents" id = 'parents'>
+<input type="button" value="parents_s" id = 'parentss'>
+<input type="button" value="parentsUntil" id = 'parentsUntil'>
+<br><br>
+<div id = "d2">
+  #d2 DIV
+  <div style="width:500px;" class="siblings">div (great-grandparent)
+    <ul>ul (grandparent)  
+      <li>li (direct parent)
+        <span>span</span>
+      </li>
+    </ul>   
+  </div>
+
+</div>
+
+<!-------------------------------------------------------------------------------->
+
+<pre>
+클릭한걸 기준(여긴 d3니까 d3의..)으로  후손 span을 찾아라.
+
+</pre>
+<input type="button" value="find1" id = 'find1'>
+<br><br>
+<div id = "d3">
+  <div style="width:500px;" class="siblings">div (great-grandparent)
+    <ul>ul (grandparent)  
+      <li>li (direct parent)
+        <span>span</span>
+      </li>
+    </ul>   
+  </div>
+
+</div>
+<!-------------------------------------------------------------------------------->
+
+<pre>
+클릭한걸 기준으로 후손 span을 찾아라 
+</pre>
+<input type="button" value="find2" id = 'find2'>
+<br><br>
+<div id = "d4">
+  <div style="width:500px;" class="siblings">div (great-grandparent)
+    <ul>ul (grandparent)  
+      <li>li (direct parent)
+        <span>span</span>
+      </li>
+    </ul>   
+  </div>
+
+</div>
+
+
+</body>
+</html>
