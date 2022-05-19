@@ -1,0 +1,58 @@
+<!-- 
+title속성 : 마우스 포인터를 올려놓으면(네모칸) 관련된 말풍선이 뜬다.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+	$('#btn1').on('click',function(){
+// 		$('img').attr('title','사진');	//title속성 : 모든 이미지 위에 마우스 포인터를 올려놓으면 '사진'이라는 말풍선이 생김
+		$('img').attr('title',function(){
+			
+			//src의 속성값을 가져오기
+			a = $(this).attr('src');
+			
+			start =a.lastIndexOf('/')+1;	//마지막 /의 위치값 얻기 + 1 
+			end = a.lastIndexOf('.');	//마지막 .의 위치값 얻기
+			
+			//start와 end사이의 문자 추출
+			vtitle = a.substring(start,end);
+// 			vtitle = a.slice(start,end);
+			
+			return vtitle;
+		})	
+	})
+	
+})
+</script>
+<style>
+img{
+width: 100px;
+height: 100px;
+}
+</style>
+</head>
+<body>
+
+
+
+<pre></pre>
+<input type = button value = 확인 id = btn1>
+<br><br>
+
+<div id = "d1">
+	<img alt="케이크1" src="../HWimages/케이크1.jpg">
+	<img alt="꽃1" src="../HWimages/꽃1.jpg">
+	<img alt="케이크2" src="../HWimages/케이크2.jpg">
+	<img alt="꽃3" src="../HWimages/꽃3.jpg">
+	<img alt="케이크3" src="../HWimages/케이크3.jpg">
+</div>
+</body>
+</html>
