@@ -1,0 +1,77 @@
+<!-- 
+prop를 이용한 바꾸기
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+	$('#btn1').on('click',function(){	
+		//1. 처음 실행시, 현재의 상태값을 가져온다. (getter)
+		chk = $('#checkTest').prop('checked');	//checked되어있으면 true
+		opt = $('#selTest option').eq(2).prop('selected');
+		txt = $('#txtTest').prop('readonly');	
+		but = $('#runBtn').prop('disabled');	//사용불가능하면 true이기떄문에 현재는 false
+		
+		console.log(chk,opt,txt,but);
+		
+		//2. 확인 버튼을 클릭하면 현재 상태값을 반대로 변경한다 (setter)
+		
+		//첫번째 방법.if문으로 일일이 비교하기
+// 		if(chk == true) $('#checkTest').prop('checked',false);
+// 		else if (chk == false) $('#checkTest').prop('checked',true);
+		
+		//두번째 방법. 뒤에 올 값 부분에 !를 붙여서 반대로 실행하게 하기  
+		$('#checkTest').prop('checked', !$('#checkTest').prop('checked'));	
+		$('#selTest option').eq(2).prop('selected', !$('#selTest option').eq(2).prop('selected'));
+		$('#txtTest').prop('readonly', !$('#txtTest').prop('readonly'));	
+		$('#runBtn').prop('disabled', !$('#runBtn').prop('disabled'));	
+
+	})
+})
+</script>
+
+</head>
+<body>
+
+
+<pre>
+1. 처음 실행시, 현재의 상태값을 가져온다. (getter)
+checkbox - checked
+select - selected
+text - readonly
+button - disabled
+
+2. 확인 버튼을 클릭하면 현재 상태값을 반대로 변경한다. 
+</pre>
+<input type="button" value="확인" id = btn1>
+<br><br>
+<div id = "d1">
+	<form>
+		체크박스(라디오버튼) :   
+		 <input type="checkbox" id="checkTest"  checked><br><br>
+		
+		리스트박스(select객체) : 
+		 <select id="selTest">
+		     <option value="1">하나</option> 
+		     <option value="2">둘</option>
+		     <option value="3" selected >셋</option>  
+		     <option value="4">넷</option>
+		 </select><br><br>
+		
+		 text객체	(readonly) : 
+		 <input type="text" value="가나다" id="txtTest"><br><br>
+		
+		 button객체(disabled) : 
+		<input type="button" value="실행" onclick = "alert('hello')" id="runBtn" >
+	</form>
+</div>
+</body>
+</html>
