@@ -1,5 +1,5 @@
 <!-- 
-prop를 이용한 바꾸기
+prop매서드를 이용한 상태 바꾸기
 -->
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ $(function(){
 		
 		console.log(chk,opt,txt,but);
 		
-		//2. 확인 버튼을 클릭하면 현재 상태값을 반대로 변경한다 (setter)
+		//2. 확인 버튼을 클릭하면 현재 상태값을 반대로 변경한다
 		
 		//첫번째 방법.if문으로 일일이 비교하기
 // 		if(chk == true) $('#checkTest').prop('checked',false);
@@ -35,6 +35,14 @@ $(function(){
 		$('#runBtn').prop('disabled', !$('#runBtn').prop('disabled'));	
 
 	})
+	
+////////////////////////////////////////////////////////////////////////////////
+
+	$('#all').on('change',function(){
+		vcheck = $(this).prop('checked');	//all의 상태값 얻기
+		$('.check').prop('checked',vcheck); //all이 체크되면 .check클래스의 input들도 모두 같은 값이 되게 하기.
+		
+	})
 })
 </script>
 
@@ -44,12 +52,17 @@ $(function(){
 
 <pre>
 1. 처음 실행시, 현재의 상태값을 가져온다. (getter)
-checkbox - checked
-select - selected
-text - readonly
-button - disabled
+	1) checkbox - prop(checked)
+	2) select 	- prop(selected)
+	3) text		- prop(readonly)
+	4) button 	- prop(disabled)
 
-2. 확인 버튼을 클릭하면 현재 상태값을 반대로 변경한다. 
+2. 확인 버튼을 클릭하면 현재 상태값을 반대로 변경한다.(setter) 
+	1) prop('checked',변경값)
+	2) prop('selected',변경값)
+	3) prop('disabled',변경값)
+	4) prop('readonly',변경값)
+
 </pre>
 <input type="button" value="확인" id = btn1>
 <br><br>
@@ -72,6 +85,27 @@ button - disabled
 		 button객체(disabled) : 
 		<input type="button" value="실행" onclick = "alert('hello')" id="runBtn" >
 	</form>
+</div>
+
+
+
+<!-- allCheck박스가 체크되면 하위 체크박스들도 모두 값이 변경되게 하기 -->
+<pre>
+전체 선택의 상태값으로 1~5의 상태값을 설정한다. 
+(전체선택을 클릭하면 1~5도 모두 체크 또는 체크해지되게끔.)
+
+1.전체선택의 상태값으로 상태값 가져오기 => .prop('상태')
+1~5의 상태값 설정 => .prop('상태',설정값)
+
+2. all을 누르면 상태가 바뀌는것이므로, changeEvent라고 한다.
+</pre>
+<div id = d2>
+	<input type = checkbox id = all>전체선택<!-- 서버로 전송하지 않을거면 value가 없어도 된다. -->
+	<input type = checkbox class = check>1
+	<input type = checkbox class = check>2
+	<input type = checkbox class = check>3
+	<input type = checkbox class = check>4
+	<input type = checkbox class = check>5
 </div>
 </body>
 </html>
