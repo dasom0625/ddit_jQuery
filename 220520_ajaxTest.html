@@ -1,0 +1,143 @@
+<!--
+동기화와 비동기화 방식
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+	
+	xhr = new XMLHttpRequest();
+<!-----------------------------비동기화 방식------------------------------------>
+// 	$(document).on('click','#sync',function(){ 1.//delegate방식
+		
+// 	})
+
+	$('#async').on('click',function(){//1.bind방식
+		//입력한 내용 가져오기
+		idvalue = $('#id').val().trim();	//공백제거를 위해 trim도 같이 쓰기
+		namevalue = $('#name').val().trim();//공백제거를 위해 trim도 같이 쓰기
+		
+		//2. 요청-get방식
+		xhr.open('get','ajaxTest1.jsp?id'+idvalue+'&name='+namevalue,true);
+		xhr.send();
+		
+		//3. 응답(단, 응답이 오기전에 또 요청을 보낼 수 도 있음)
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				res = this.responseText;
+				
+				$('#d1').html(res);	//res(응답)을 d1에 찍어내기
+			}
+		}
+	})
+
+<!--------------------------비동기화 post방식---------------------------------->
+	$('#asyncpost').on('click',function(){
+		//입력한 값 가져오기
+		idvalue = $('#id').val().trim();
+		namevalue = $('#name').val().trim();
+		
+		//요청
+		xhr.open('post','ajaxTest1.jsp', true);
+		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		xhr.send('id'+idvalue+'&name='+namevalue);
+		
+		//응답
+		xhr.onreadystatechange=function(){
+			if(this.readyState == 4 && this.status == 200){//성공했으면
+				res = this.responseText;
+			
+				$('#d1').html(res);
+			}
+		}
+		
+	})
+	
+<!--------------------------- 동기화 방식 ------------------------------------>
+	$('#sync').on('click',function(){
+		location.href = "ajaxTest1.jsp?id=a001?name=korea";
+	})
+
+})
+</script>
+
+</head>
+<body>
+
+
+
+<pre>
+[ 비동기화 실행 방식 ]
+1.객체 생성
+xhr = new XMLHttpRequest()객체 생성(돔에서 가져오기때문에 별도의 라이브러리 필요없음)
+
+2. 요청(보내기)
+	1) get방식
+	xmr.open('get','서버에서 처리할 페이지 이름?id=a001&name=korea','true');//비동기로 올거면 true
+	xhr.send();
+		=>요청시 처리되는 readystate(0,1,2,3,4)값이 있다.
+		=> 0 : 요청전
+		=> 1 : 요청페이지 로드 (보고싶으면 alert상태로만 확인 가능)
+		=> 2 : 요청페이지 로드 완료
+		=> 3 : 요청페이지 처리 중...
+		=> 4 : 요청페이지 처리 완료
+
+	2) post방식
+	xhr.open('post','서버에서 처리할 페이지 이름','true');//비동기로 올거면 true
+	xhtr.setRequestHeader('키','value');
+	xhr.send("id=a001&name=korea");
+
+3.status(상태)
+	=> 404 : 파일이 없습니다.
+	=> 304 : 요청하신 형식이 없습니다.
+	=> 500 : 코딩이 잘못되었습니다(문법오류-syn)
+	=> 200 : 성공
+
+4. 응답(이벤트를 줄때는 소문자, 상태를 나타내는 속성일땐 대소문자)
+xhr.onreadystatechange = function(){
+	if(this.readyState==4 && this.status == 200){
+		this.responseText =>json형식으로 parsing해야한다.
+		또는 this.resposeXML
+	}
+}
+
+
+</pre>
+<!-- 동기화 get방식  -->
+<input type="button" value="일반요청(get동기요청-script)" id="sync">
+<input type="button" value="일반요청(get동기요청-onclik)" onclick="location.href='ajaxTest1.jsp?id=a001&name=korea'">
+
+
+<!-- 동기화 post방식  -->
+<br><br><br>
+<form action = "ajaxTest1.jsp" method="post"><!-- input type=submit일때 action을 줌 -->
+	<input type="submit" value="일반요청(post동기요청)" id="syncpost"><br>
+	아이디 <input type="text" name = "id"><br><br>
+	이름 <input type="text" name ="name"><br><br>
+</form>
+<br>
+
+<!-- 비동기화 get과 post방식 -->
+<hr>
+
+<form>
+	아이디 <input type="text" name = "id" id = "id"><br><br><!--스크립트에서 입력하면 해당값을 value로 가져와야함.  -->
+	이름 <input type="text" name ="name" id = "name"><br><br>
+
+	<input type="button" value="비동기요청get" id="async">
+	<input type="button" value="비동기요청post" id="asyncpost">
+</form>
+
+<br><br>
+<div id = "d1"></div>
+</body>
+</html>
