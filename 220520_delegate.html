@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+
+<script>
+$(function(){
+<!----------------------- delegate ------------------------------->
+
+	$(document).delegate('.make','click',function(){
+	$('<input type="button" value="확인" class = "make">').appendTo($('#d1'));	
+	
+	})
+	
+<!----------------------- undelegate ------------------------------->
+	
+	$(document).on('click','.stop',function(){
+	$(document).undelegate('.make','click');	
+		
+	})
+})
+</script>
+
+</head>
+<body>
+
+<!----------------------- delegate ------------------------------->
+<pre>
+delegate란?
+1) 정적인 요소 뿐만 아니라 동적으로 새롭게 생성되는 요소에도 같은 이벤트 핸들러가 수행된다.
+=> $(document).delegate('이벤트 대상','click',function(){})
+=> $(document).on('click','이벤트대상',function(){})
+</pre>
+<input type="button" value="생성" class = "make">
+
+<!----------------------- undelegate ------------------------------->
+<pre>
+undelegate란?
+1) 정적인 요소 뿐만 아니라 동적으로 새롭게 생성되는 요소에도 같은 이벤트 핸들러가 수행된다.
+=> $(document).undelegate('click','이벤트대상')
+=> $(document).off('click','이벤트대상') =>이벤트대상에는 deleate나 onclick준 곳..
+</pre>
+<input type="button" value="중지" class = "stop">
+<br><br>
+<div id = "d1"></div>
+</body>
+</html>
