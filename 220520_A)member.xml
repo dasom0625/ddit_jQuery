@@ -1,0 +1,16 @@
+<!--jqpro/Java Resources/res/kr/or/ddit/ibatis/mapper/member.xml-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+   
+<sqlMap namespace="member">
+
+
+	<select id = "selectAll" resultClass = "member"><!-- resultClass는 kr.or.ddit.member.vo.MemberVO 의 alias인 member -->
+		select * from member
+	</select>
+	
+</sqlMap>
