@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+<script src = "../js/jquery-3.6.0.min.js"></script>
+<style>
+table{
+border : 2px solid skyblue;
+}
+td{
+width : auto;
+height: auto;
+text-align: center;
+padding : 20px;
+}
+th{
+background: skyblue;
+font-size: 1.5em;
+padding : 30px;
+}
+p:hover{
+background: pink;
+}
+</style>
+<script>
+$(function(){
+	
+	xhr = new XMLHttpRequest();
+	
+	$('input:button').on('click',function(){
+		//요청
+			xhr.open('get','buyer.jsp',true);
+			xhr.send();
+		//응답
+			xhr.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					res = JSON.parse(this.responseText);//jsp에서 만들어진 jsonobject배열 데이터가 온다. 
+					
+					code = "";
+					$.each(res,function(i,v){
+					code += "<p id = '" + res[i].id +"'>" + v.name + "</p>";
+					
+					})
+					
+					$("#name").html(code);
+// 					$("#info").html(code);
+				
+			}
+		}
+	})
+	
+// 	$('p').on('click',function(){	//새로 생긴 p태그이기때문에 이렇게 쓰면 안됨 
+// 	$(document).on('click','p',function(){//이렇게 쓰거나 혹은 아래와 같이 작성
+	$('#name').on('click','p',function(){
+// 		alert($(this).attr('id'));		
+		idvalue = $(this).attr('id');
+		//요청
+		xhr.open('get','buyerDetail.jsp?id='+idvalue,true);//get방식
+		xhr.send();
+		//응답
+		xhr.onreadystatechange = function(){
+			if(this.readyState==4 && this.status==200){
+				res = JSON.parse(this.responseText);
+				
+				code = "아이디 : " + res.id+"<br>";
+				code += "제품번호 : " + res.lgu + "<br>";
+				code += "이름 : " + res.name + "<br>";
+				code += "메일 : " + res.mail + "<br>";
+				code += "회사전화 : " + res.comtel + "<br>";
+				code += "은행 : " + res.bank + "<br>";
+				code += "은행이름 : " + res.bankname + "<br>";
+				code += "계좌번호 : " + res.bankno + "<br>";
+// 				code += "주소 : " + res.add + "<br>";
+				code += "<hr>";
+				
+				$('#info').html(code);
+				
+			}
+		}
+	})
+})
+
+</script>
+
+</head>
+<body>
+
+
+
+<pre>
+확인버튼 클릭하면 p태그를 생성하여 buyer_id와 buyer_name을 출력한다. 
+p태그의 buyer_name을 클릭하면 buyer_id값을 가지고 상세보기를 실행하여 출력한다.
+</pre>
+<input type="button" value="확인">
+<br><br>
+<div id = "d1">
+	<table border = "1">
+		<thead>
+			<tr>
+				<th>거래처 이름</th>
+				<th>거래처 상세정보</th>
+			</tr>
+		</thead>
+	
+		<tbody>
+			<tr>
+				<td id = name></td>
+				<td id = info></td>
+			</tr>
+		</tbody>
+		
+	</table>
+
+</div>
+</body>
+</html>
